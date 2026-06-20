@@ -110,7 +110,7 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
             type="text"
             value={form.name}
             onChange={handleChange}
-            placeholder="Aisha Khan"
+            placeholder="Talha Khan"
             autoComplete="name"
             className="w-full rounded-md border border-ink/15 bg-white px-4 py-2.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30"
           />
@@ -126,7 +126,7 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
             type="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="aisha@example.com"
+            placeholder="talha@example.com"
             autoComplete="email"
             className="w-full rounded-md border border-ink/15 bg-white px-4 py-2.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30"
           />
