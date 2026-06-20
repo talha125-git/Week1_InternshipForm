@@ -18,16 +18,21 @@ app.get('/', (req, res) => {
   res.send('Internship Registration API is running.');
 });
 
-// Connect to MongoDB, then start the server
+// Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
+    // Only listen on a port if not running on Vercel
+    if (!process.env.VERCEL) {
+      app.listen(PORT, () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+      });
+    }
   })
   .catch((error) => {
     console.error('MongoDB connection error:', error.message);
-    process.exit(1);
   });
+
+// Export the app for Vercel
+module.exports = app;
