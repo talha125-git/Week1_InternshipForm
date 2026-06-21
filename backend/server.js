@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('✔️\tConnected to MongoDB');
     // Only listen on a port if not running on Vercel
     if (!process.env.VERCEL) {
       app.listen(PORT, () => {
