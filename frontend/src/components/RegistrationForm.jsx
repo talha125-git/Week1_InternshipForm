@@ -112,7 +112,7 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
             onChange={handleChange}
             placeholder="Talha Khan"
             autoComplete="name"
-            className="w-full rounded-md border border-ink/15 bg-white px-4 py-2.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30"
+            className="w-full rounded-md border border-ink/15 bg-gray-50 px-4 py-2.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30"
           />
         </div>
 

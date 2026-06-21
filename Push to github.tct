@@ -1,3 +1,3 @@
 git add .
-git commit -m "form bg color changed"
+git commit -m "form bg color changed and placeholder color changed"
 git push -u origin main
