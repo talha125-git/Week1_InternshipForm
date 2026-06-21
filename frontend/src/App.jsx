@@ -14,18 +14,18 @@ export default function App() {
   return (
     <div className="min-h-screen bg-paper">
       <header className="border-b border-ink/10 bg-paper/80 backdrop-blur">
-        <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-5">
+        <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 py-4 sm:flex-row sm:gap-0 sm:py-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center  justify-center rounded-md bg-gold font-display text-sm font-bold text-ink">
+            <div className="flex h-9 w-9 items-center justify-center rounded-md bg-gold font-display text-sm font-bold text-ink">
               IR
             </div>
             <span className="font-display text-base font-semibold text-ink">Internship Registration</span>
           </div>
 
-          <nav className="flex gap-1 rounded-full border border-ink/10 bg-white p-1">
+          <nav className="flex w-full sm:w-auto justify-center gap-1 rounded-full border border-ink/10 bg-white p-1">
             <button
               onClick={() => setActiveTab('apply')}
-              className={`rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${
+              className={`flex-1 sm:flex-none rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${
                 activeTab === 'apply' ? 'bg-ink text-paper' : 'text-ink/55 hover:text-ink'
               }`}
             >
@@ -33,7 +33,7 @@ export default function App() {
             </button>
             <button
               onClick={() => setActiveTab('registrations')}
-              className={`rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${
+              className={`flex-1 sm:flex-none rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${
                 activeTab === 'registrations' ? 'bg-ink text-paper' : 'text-ink/55 hover:text-ink'
               }`}
             >

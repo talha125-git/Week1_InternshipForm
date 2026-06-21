@@ -62,7 +62,7 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
 
   if (status === 'success' && lastSubmitted) {
     return (
-      <div className="rounded-xl border border-green/20 bg-green-50 p-8 text-center shadow-card">
+      <div className="rounded-xl border border-green/20 bg-green-50 p-6 sm:p-8 text-center shadow-card">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green text-paper">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -76,13 +76,13 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <button
             onClick={onViewRegistrations}
-            className="rounded-md bg-ink px-5 py-2.5 font-display text-sm font-semibold text-paper transition hover:bg-ink-light"
+            className="w-full sm:w-auto rounded-md bg-ink px-5 py-2.5 font-display text-sm font-semibold text-paper transition hover:bg-ink-light"
           >
             View all registrations
           </button>
           <button
             onClick={startNewApplication}
-            className="rounded-md border border-ink/15 px-5 py-2.5 font-display text-sm font-semibold text-ink transition hover:bg-white"
+            className="w-full sm:w-auto rounded-md border border-ink/15 px-5 py-2.5 font-display text-sm font-semibold text-ink transition hover:bg-white"
           >
             Submit another
           </button>
@@ -92,7 +92,7 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-ink/10 bg-white p-8 shadow-card">
+    <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-ink/10 bg-white p-6 sm:p-8 shadow-card">
       {status === 'error' && (
         <div className="mb-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {errorMessage}

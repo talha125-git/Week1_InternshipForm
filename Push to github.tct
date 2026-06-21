@@ -1,3 +1,3 @@
 git add .
-git commit -m "favicon added"
+git commit -m "Make responsive for mobile device"
 git push -u origin main

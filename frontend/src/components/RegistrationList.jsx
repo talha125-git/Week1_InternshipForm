@@ -92,12 +92,12 @@ export default function RegistrationList({ refreshSignal, onCountChange, onApply
           key={reg._id}
           className="relative overflow-visible rounded-xl border border-ink/10 bg-white shadow-card"
         >
-          <div className="flex items-start justify-between px-5 pt-5">
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-0 px-5 pt-5">
             <div>
               <p className="font-display text-base font-semibold leading-tight text-ink">{reg.name}</p>
               <p className="mt-0.5 text-sm text-ink/55">{reg.email}</p>
             </div>
-            <span className="rounded-full bg-green-50 px-3 py-1 font-mono text-xs font-medium text-green">
+            <span className="inline-block self-start rounded-full bg-green-50 px-3 py-1 font-mono text-xs font-medium text-green">
               {reg.technology}
             </span>
           </div>
