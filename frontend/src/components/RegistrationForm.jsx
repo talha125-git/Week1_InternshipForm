@@ -144,7 +144,7 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
             value={form.technology}
             onChange={handleChange}
             placeholder="e.g. React, Python, UI/UX Design"
-            className="w-full rounded-md border border-ink/15 bg-white px-4 py-2.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30"
+            className="w-full rounded-md border border-ink/15 bg-gray-50 px-4 py-2.5 text-ink placeholder:text-ink/30 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30"
           />
           <datalist id="tech-suggestions">
             {TECH_SUGGESTIONS.map((tech) => (
