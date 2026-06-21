@@ -90,7 +90,7 @@ export default function RegistrationList({ refreshSignal, onCountChange, onApply
       {sortedRegistrations.map((reg, index) => (
         <article
           key={reg._id}
-          className="relative overflow-visible rounded-xl border border-ink/10 bg-white shadow-card"
+          className="relative overflow-visible rounded-xl border border-ink/10 bg-gray-50 shadow-card"
         >
           <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-0 px-5 pt-5">
             <div>
