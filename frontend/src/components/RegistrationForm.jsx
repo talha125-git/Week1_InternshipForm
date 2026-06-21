@@ -92,7 +92,7 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-ink/10 bg-white p-6 sm:p-8 shadow-card">
+    <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-ink/10 bg-gray-200 p-6 sm:p-8 shadow-card">
       {status === 'error' && (
         <div className="mb-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {errorMessage}
