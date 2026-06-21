@@ -12,7 +12,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen bg-pink-100">
       <header className="border-b border-ink/10 bg-paper/80 backdrop-blur">
         <div className="mx-auto flex max-w-4xl flex-col items-center justify-between gap-4 px-6 py-4 sm:flex-row sm:gap-0 sm:py-5">
           <div className="flex items-center gap-3">
@@ -25,17 +25,15 @@ export default function App() {
           <nav className="flex w-full sm:w-auto justify-center gap-1 rounded-full border border-ink/10 bg-white p-1">
             <button
               onClick={() => setActiveTab('apply')}
-              className={`flex-1 sm:flex-none rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${
-                activeTab === 'apply' ? 'bg-ink text-paper' : 'text-ink/55 hover:text-ink'
-              }`}
+              className={`flex-1 sm:flex-none rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${activeTab === 'apply' ? 'bg-ink text-paper' : 'text-ink/55 hover:text-ink'
+                }`}
             >
               Apply
             </button>
             <button
               onClick={() => setActiveTab('registrations')}
-              className={`flex-1 sm:flex-none rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${
-                activeTab === 'registrations' ? 'bg-ink text-paper' : 'text-ink/55 hover:text-ink'
-              }`}
+              className={`flex-1 sm:flex-none rounded-full px-4 py-1.5 font-display text-sm font-medium transition ${activeTab === 'registrations' ? 'bg-ink text-paper' : 'text-ink/55 hover:text-ink'
+                }`}
             >
               Registrations{count !== null ? ` (${count})` : ''}
             </button>

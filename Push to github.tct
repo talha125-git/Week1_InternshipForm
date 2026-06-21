@@ -1,3 +1,3 @@
 git add .
-git commit -m "Make responsive for mobile device"
+git commit -m "color changed for background"
 git push -u origin main
