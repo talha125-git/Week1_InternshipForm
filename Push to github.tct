@@ -1,3 +1,3 @@
 git add .
-git commit -m "backend running successfully "
+git commit -m "Week:2  Implement registration update and delete functionality; enhance UI with search and glassmorphism styles"
 git push -u origin main

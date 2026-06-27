@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '/_/backend/api/registrations' : 'http://localhost:5000/api/registrations');
@@ -18,11 +18,26 @@ const TECH_SUGGESTIONS = [
 
 const initialForm = { name: '', email: '', technology: '' };
 
-export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
+export default function RegistrationForm({ onSuccess, onViewRegistrations, editingRegistration, onCancelEdit }) {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [errorMessage, setErrorMessage] = useState('');
   const [lastSubmitted, setLastSubmitted] = useState(null);
+
+  useEffect(() => {
+    if (editingRegistration) {
+      setForm({
+        name: editingRegistration.name || '',
+        email: editingRegistration.email || '',
+        technology: editingRegistration.technology || '',
+      });
+      setStatus('idle');
+      setErrorMessage('');
+      setLastSubmitted(null);
+    } else {
+      setForm(initialForm);
+    }
+  }, [editingRegistration]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,10 +57,16 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
     setErrorMessage('');
 
     try {
-      const { data } = await axios.post(API_URL, form);
+      const response = editingRegistration
+        ? await axios.put(`${API_URL}/${editingRegistration._id}`, form)
+        : await axios.post(API_URL, form);
+
+      const { data } = response;
       setLastSubmitted(data);
-      setForm(initialForm);
       setStatus('success');
+      if (!editingRegistration) {
+        setForm(initialForm);
+      }
       onSuccess?.(data);
     } catch (err) {
       setStatus('error');
@@ -60,6 +81,8 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
     setLastSubmitted(null);
   };
 
+  const activeLabel = editingRegistration ? 'Update application' : 'Submit application';
+
   if (status === 'success' && lastSubmitted) {
     return (
       <div className="rounded-xl border border-green/20 bg-green-50 p-6 sm:p-8 text-center shadow-card">
@@ -68,9 +91,11 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="font-display text-xl font-semibold text-ink">Application received</h3>
+        <h3 className="font-display text-xl font-semibold text-ink">
+          {editingRegistration ? 'Application updated' : 'Application received'}
+        </h3>
         <p className="mt-2 text-sm text-ink/60">
-          Thanks, {lastSubmitted.name.split(' ')[0]} — we've logged your interest in{' '}
+          Thanks, {lastSubmitted.name.split(' ')[0]} — {editingRegistration ? 'your changes were saved' : 'we logged your interest'} in{' '}
           <span className="font-medium text-ink">{lastSubmitted.technology}</span>.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
@@ -93,6 +118,16 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="rounded-xl border border-ink/10 bg-gray-200 p-6 sm:p-8 shadow-card">
+      <div className="mb-6 rounded-3xl border border-ink/10 bg-white/80 p-5 shadow-sm">
+        <p className="text-xs uppercase tracking-[0.3em] text-green">{editingRegistration ? 'Editing registration' : 'New application'}</p>
+        <h2 className="mt-3 text-2xl font-semibold text-ink">{editingRegistration ? 'Update your application details' : 'Apply for the internship'}</h2>
+        <p className="mt-2 text-sm leading-6 text-ink/60">
+          {editingRegistration
+            ? 'Change your name, email, or chosen technology and save the updated registration.'
+            : 'Tell us who you are and what you want to build. It takes less than a minute.'}
+        </p>
+      </div>
+
       {status === 'error' && (
         <div className="mb-6 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {errorMessage}
@@ -154,14 +189,26 @@ export default function RegistrationForm({ onSuccess, onViewRegistrations }) {
         </div>
       </div>
 
-      <button
-        type="submit"
-        disabled={status === 'submitting'}
-        className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md bg-gold px-5 py-3 font-display text-sm font-semibold text-ink transition hover:bg-gold-dark disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-      >
-        {status === 'submitting' ? 'Submitting…' : 'Submit application'}
-        {status !== 'submitting' && <span aria-hidden="true">→</span>}
-      </button>
+      <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <button
+          type="submit"
+          disabled={status === 'submitting'}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-gold px-5 py-3 font-display text-sm font-semibold text-ink transition hover:bg-gold-dark disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+        >
+          {status === 'submitting' ? 'Submitting…' : activeLabel}
+          {status !== 'submitting' && <span aria-hidden="true">→</span>}
+        </button>
+
+        {editingRegistration && (
+          <button
+            type="button"
+            onClick={onCancelEdit}
+            className="inline-flex w-full items-center justify-center rounded-md border border-ink/15 bg-white px-5 py-3 font-display text-sm font-semibold text-ink transition hover:bg-gray-50 sm:w-auto"
+          >
+            Cancel edit
+          </button>
+        )}
+      </div>
     </form>
   );
 }
