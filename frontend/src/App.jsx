@@ -32,7 +32,7 @@ export default function App() {
             </div>
             <div className="space-y-1">
               <p className="font-display text-base font-semibold text-slate-900">Internship Registration</p>
-              <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Week 1 project</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Week 2 project</p>
             </div>
           </div>
 

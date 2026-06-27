@@ -1,3 +1,3 @@
 git add .
-git commit -m "Week:2  Implement registration update and delete functionality; enhance UI with search and glassmorphism styles"
+git commit -m "Week:2  Update project label to reflect Week 2 changes"
 git push -u origin main
